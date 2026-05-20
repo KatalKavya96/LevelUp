@@ -1,0 +1,24 @@
+{
+  "name": "levelup-pushup-builder",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "dev:backend": "npm run dev -w backend",
+    "dev:frontend": "npm run dev -w frontend",
+    "build:backend": "npm run build -w backend",
+    "build:frontend": "npm run build -w frontend",
+    "prisma:generate": "npm run prisma:generate -w backend",
+    "prisma:migrate": "npm run prisma:migrate -w backend",
+    "db:seed": "npm run db:seed -w backend"
+  },
+  "overrides": {
+    "postcss": "8.5.15",
+    "next@16.2.6": {
+      "postcss": "8.5.15"
+    }
+  }
+}

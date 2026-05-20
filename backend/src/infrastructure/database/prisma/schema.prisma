@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Difficulty {
+  BEGINNER
+  INTERMEDIATE
+  ADVANCED
+}
+
+enum MuscleTargetType {
+  PRIMARY
+  SECONDARY
+}
+
+model Muscle {
+  id          String           @id @default(cuid())
+  name        String
+  slug        String           @unique
+  description String           @db.Text
+  imageUrl    String?
+  exercises   ExerciseMuscle[]
+  createdAt   DateTime         @default(now())
+  updatedAt   DateTime         @updatedAt
+
+  @@map("muscles")
+}
+
+model Exercise {
+  id                   String           @id @default(cuid())
+  name                 String
+  slug                 String           @unique
+  description          String           @db.Text
+  difficulty           Difficulty
+  recommendedSets      Int
+  recommendedReps      String
+  restTimeSeconds      Int
+  timerDurationSeconds Int?
+  animationUrl         String?
+  muscleImageUrl       String?
+  equipment            String
+  instructions         Json
+  commonMistakes       Json
+  benefits             Json
+  muscles              ExerciseMuscle[]
+  createdAt            DateTime         @default(now())
+  updatedAt            DateTime         @updatedAt
+
+  @@map("exercises")
+}
+
+model ExerciseMuscle {
+  id         String           @id @default(cuid())
+  exerciseId String
+  muscleId   String
+  type       MuscleTargetType
+  exercise   Exercise         @relation(fields: [exerciseId], references: [id], onDelete: Cascade)
+  muscle     Muscle           @relation(fields: [muscleId], references: [id], onDelete: Cascade)
+
+  @@unique([exerciseId, muscleId])
+  @@index([muscleId])
+  @@map("exercise_muscles")
+}
