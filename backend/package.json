@@ -4,7 +4,8 @@
   "private": true,
   "main": "dist/server.js",
   "scripts": {
-    "dev": "tsx watch src/server.ts",
+    "dev": "tsx src/shared/utils/checkPort.ts && tsx watch src/server.ts",
+    "dev:5001": "PORT=5001 tsx src/shared/utils/checkPort.ts && PORT=5001 tsx watch src/server.ts",
     "build": "tsc -p tsconfig.json",
     "start": "node dist/server.js",
     "prisma:generate": "prisma generate --schema src/infrastructure/database/prisma/schema.prisma",

@@ -8,7 +8,9 @@
   ],
   "scripts": {
     "dev:backend": "npm run dev -w backend",
+    "dev:backend:5001": "npm run dev:5001 -w backend",
     "dev:frontend": "npm run dev -w frontend",
+    "dev:frontend:5001-api": "NEXT_PUBLIC_API_URL=http://localhost:5001/api npm run dev -w frontend",
     "build:backend": "npm run build -w backend",
     "build:frontend": "npm run build -w frontend",
     "prisma:generate": "npm run prisma:generate -w backend",

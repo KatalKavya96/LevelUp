@@ -87,16 +87,29 @@ Start the backend:
 npm run dev:backend
 ```
 
+If port `5000` is already in use on your Mac, run the backend on `5001` instead:
+
+```bash
+npm run dev:backend:5001
+```
+
 Start the frontend in a second terminal:
 
 ```bash
 npm run dev:frontend
 ```
 
+If the backend is running on `5001`, start the frontend with the matching API URL:
+
+```bash
+npm run dev:frontend:5001-api
+```
+
 Open:
 
 - Frontend: http://localhost:3000
 - Backend health: http://localhost:5000/health
+- Backend health on fallback port: http://localhost:5001/health
 
 ## API Routes
 
