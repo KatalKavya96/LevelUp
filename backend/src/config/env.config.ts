@@ -12,6 +12,7 @@ class EnvConfig {
     this.databaseUrl =
       process.env.DATABASE_URL ??
       "mysql://root:password@localhost:3306/pushup_builder";
+    process.env.DATABASE_URL ??= this.databaseUrl;
     this.frontendUrl = process.env.FRONTEND_URL ?? "http://localhost:3000";
     this.nodeEnv = process.env.NODE_ENV ?? "development";
     this.port = Number(process.env.PORT ?? 5000);

@@ -42,6 +42,15 @@ export const errorMiddleware = (
     }
   }
 
+  if (error instanceof Prisma.PrismaClientInitializationError) {
+    return res.status(503).json({
+      success: false,
+      message:
+        "Database connection failed. Check DATABASE_URL and ensure MySQL is running.",
+      details: null
+    });
+  }
+
   console.error(error);
 
   return res.status(500).json({
